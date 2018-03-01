@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="name">
+            <p>{{ name }}</p>
+            <button v-on:click="counter++">Increase</button>
+            <button v-on:click="counter--">Decrease</button>
+            <button v-on:click="secondCounter++">Increase2</button>
+            <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+            <p>Result: {{ result() }} | {{ output }}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    name: 'Max',
+                    counter: 0,
+                    secondCounter: 0,
+                    results: ['Smaller than 5', 'Greater than 5']
+                },
+                computed: {
+                    output: function() {
+                        console.log('computed');
+                        return this.results[(this.counter > 5) + 0];
+                    }
+                },
+                methods: {
+                    result: function() {
+                        console.log('result');
+                        return this.results[(this.counter > 5) + 0];
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
