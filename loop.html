@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{ i }})</li>
+            </ul>
+            <hr>
+            <ul>
+                <li v-for="person in persons">
+                    <div v-for="(value, key, index) in person">
+                            {{ key }} - {{ value }} - {{ index }}
+                    </div>
+                    <!-- <template v-for="(value, key) in person">
+                        <p>{{ key }} - {{ value }}</p>
+                    </template> -->
+                </li>
+            </ul>
+            <hr>
+            <template v-for="(ingredient, index) in ingredients">
+                <h1>{{ ingredient }}</h1>
+                <p>{{ index }}</p>
+            </template>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    ingredients: ['meat', 'fruit', 'cookies'],
+                    persons: [
+                        { name: 'Max', age: 27, color: 'red' },
+                        { name: 'Anna', age: 'unknown', color: 'blue' }
+                    ]
+                },
+                methods: {
+
+                }
+            });
+        </script>
+    </body>
+</html>
