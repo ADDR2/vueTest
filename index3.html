@@ -7,9 +7,9 @@
         <div id="app">
             <input type="text" v-model="name">
             <p>{{ name }}</p>
-            <button v-on:click="counter++">Increase</button>
-            <button v-on:click="counter--">Decrease</button>
-            <button v-on:click="secondCounter++">Increase2</button>
+            <button @click="counter++">Increase</button>
+            <button @click="counter--">Decrease</button>
+            <button @click="secondCounter++">Increase2</button>
             <p>Counter: {{ counter }} | {{ secondCounter }}</p>
             <p>Result: {{ result() }} | {{ output }}</p>
         </div>
@@ -26,6 +26,11 @@
                     output: function() {
                         console.log('computed');
                         return this.results[(this.counter > 5) + 0];
+                    }
+                },
+                watch: {
+                    counter: function(value) {
+                        setTimeout(function() { this.counter = 0; }.bind(this), 2000);
                     }
                 },
                 methods: {

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .demo {
+                width: 100px;
+                height: 100px;
+                background-color: gray;
+                display: inline-block;
+                margin: 10px;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            .green {
+                background-color: green;
+            }
+
+            .blue {
+                background-color: blue;
+            }
+        </style>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div
+                class="demo"
+                @click="showRed = !showRed"
+                :class="verifyClass"
+            ></div>
+            <div class="demo" :style="getStyles"></div>
+            <div class="demo" :style="[getStyles, { height: width + 'px' }]"></div>
+            <input type="text" v-model="color">
+            <input type="text" v-model="width">
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    showRed: false,
+                    color: '',
+                    width: 100
+                },
+                computed: {
+                    verifyClass: function() {
+                        return {
+                            red: this.showRed,
+                            blue: !this.showRed
+                        };
+                    },
+                    getStyles: function() {
+                        return {
+                            backgroundColor: this.color,
+                            width: this.width + 'px'
+                        };
+                    }
+                },
+                methods: {}
+            });
+        </script>
+    </body>
+</html>
